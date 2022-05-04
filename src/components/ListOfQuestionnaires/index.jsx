@@ -4,6 +4,8 @@ import { MdDelete } from 'react-icons/md'
 import { IoMdAddCircle } from 'react-icons/io'
 import { useAppContext } from '@hooks/useAppContext'
 
+import { alertsError } from '@utils/alerts'
+
 import {
   Container,
   TableHead,
@@ -19,7 +21,11 @@ export const ListOfQuestionnaires = () => {
     loading
   } = useAppContext()
   const getQuestionnairesData = async () => {
-    await getQuestionnaires()
+    try {
+      await getQuestionnaires()
+    } catch (error) {
+      alertsError(error.response.data.message)
+    }
   }
   useEffect(() => {
     getQuestionnairesData()
@@ -28,7 +34,11 @@ export const ListOfQuestionnaires = () => {
     return <div>Loading...</div>
   }
   const handleDelete = async (id) => {
-    await deleteQuestionnaire(id)
+    try {
+      await deleteQuestionnaire(id)
+    } catch (error) {
+      alertsError(error.response.data.message)
+    }
   }
 
   return (
@@ -52,12 +62,14 @@ export const ListOfQuestionnaires = () => {
               <ItemQuestionnaires className='cabecera'>
                 <div className='cabecera'>Nombre</div>
                 <div className='cabecera'>Codigo</div>
+                <div className='cabecera'># De respuestas</div>
                 <div className='cabecera'>Borrar</div>
               </ItemQuestionnaires>
               {questionnaires.map((item) => (
                 <ItemQuestionnaires key={item.id}>
                   <div>{item.name}</div>
                   <div>{item.code}</div>
+                  <div>{item.result}</div>
                   <div>
                     <MdDelete onClick={() => handleDelete(item.id)} />
                   </div>

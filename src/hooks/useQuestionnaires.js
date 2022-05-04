@@ -6,12 +6,25 @@ export const useQuestionnaires = (setLoading) => {
 
   const getQuestionnaires = async () => {
     setLoading(true)
-    const { data } = await axios.get('https://intense-caverns-71243.herokuapp.com/api/v1/questionnaires', {
-      headers: {
-        Authorization: `Bearer ${window.localStorage.getItem('token')}`
+    try {
+      const { data } = await axios.get('https://intense-caverns-71243.herokuapp.com/api/v1/questionnaires', {
+        headers: {
+          Authorization: `Bearer ${window.localStorage.getItem('token')}`
+        }
+      })
+      const a = data.message.map(async questionnaire => {
+        const { data } = await axios.get(`https://intense-caverns-71243.herokuapp.com/api/v1/questionnaires/result/${questionnaire.id}`)
+        console.log(data)
+        return { ...questionnaire, result: data.message.length }
+      })
+      setQuestionnaires(await Promise.all(a))
+    } catch (err) {
+      if (err.response.status === 401) {
+        window.localStorage.removeItem('token')
+        window.location.reload()
       }
-    })
-    setQuestionnaires(data.message)
+      throw err
+    }
     setLoading(false)
   }
   const deleteQuestionnaire = async (id) => {
@@ -29,6 +42,5 @@ export const useQuestionnaires = (setLoading) => {
     questionnaires,
     getQuestionnaires,
     deleteQuestionnaire
-
   }
 }

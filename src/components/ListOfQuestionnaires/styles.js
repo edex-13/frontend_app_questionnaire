@@ -7,11 +7,10 @@ export const Container = styled.div`
   
 `
 export const Table = styled.div`
-  min-height: 600px;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  max-height: 500px;
   margin-top: 20px;
-  margin: 0 auto;
+  overflow: hidden;
+  overflow-y: scroll;
   background-color: #FBFBFB;
   border-radius: 5px;
   border: 1px solid #e6e6e6;
@@ -63,16 +62,15 @@ export const Add = styled.div`
 export const ItemQuestionnaires = styled.div`
 
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
   grid-gap: 20px;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 45px;
+  min-height: 45px;
   box-shadow: 0px 0px 1px 0px rgba(0,0,0,.4);
   & div{
-    padding:0px 10px;
-    height: 100%;
+    min-height: 100%;
   }
   &.cabecera{
     background-color: #26783c;
@@ -80,6 +78,9 @@ export const ItemQuestionnaires = styled.div`
     text-align: center;
     font-weight: 700;
     font-size: 18px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
   }
   &  div{
     text-align: center;
