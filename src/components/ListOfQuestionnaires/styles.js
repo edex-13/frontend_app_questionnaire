@@ -7,11 +7,14 @@ export const Container = styled.div`
   
 `
 export const Table = styled.div`
-  max-height: 800px;
+  min-height: 600px;
   overflow-y: scroll;
   overflow-x: hidden;
   margin-top: 20px;
   margin: 0 auto;
+  background-color: #FBFBFB;
+  border-radius: 5px;
+  border: 1px solid #e6e6e6;
   `
 export const TableHead = styled.div`
   display: flex;
