@@ -5,7 +5,8 @@ import { wrapper } from '@styles/Wrapper'
 export const WelcomeUserContainer = styled.section`
   ${wrapper()}
   width: 100%;
-  min-height: 130px;
+  min-height: 100px;
+  border-bottom: 1px solid #e6e6e6;
 `
 export const Title = styled.h1`
   font-size: 24px;
