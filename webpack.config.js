@@ -6,7 +6,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle[contenthash].js',
-    publicPath: 'https://edex-13.github.io/frontend_app_questionnaire/'
+    publicPath: '.'
   },
   mode: 'development',
   resolve: {

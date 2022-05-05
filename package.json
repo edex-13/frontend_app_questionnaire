@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "webpack serve  --open",
-    "build": "webpack --mode production",
+    "build": "webpack ",
     "lint": "standard --fix"
   },
   "repository": {
@@ -13,32 +13,32 @@
     "url": "git@github.com-felipe:edex-13/frontend_app_questionnaire.git"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.7",
-    "@babel/plugin-transform-runtime": "^7.16.7",
+    "@babel/core": "7.16.7",
+    "@babel/plugin-transform-runtime": "7.16.7",
     "@babel/preset-env": "^7.16.7",
     "@babel/preset-react": "^7.16.7",
-    "babel-loader": "^8.2.3",
-    "html-loader": "^3.1.0",
-    "html-webpack-plugin": "^5.5.0",
-    "standard": "^16.0.4",
-    "webpack": "^5.65.0",
-    "webpack-cli": "^4.9.1",
-    "webpack-dev-server": "^4.7.2"
+    "babel-loader": "8.2.3",
+    "html-loader": "3.1.0",
+    "html-webpack-plugin": "5.5.0",
+    "standard": "16.0.4",
+    "webpack": "5.65.0",
+    "webpack-cli": "4.9.1",
+    "webpack-dev-server": "4.7.2"
   },
   "dependencies": {
-    "axios": "^0.26.1",
-    "jwt-decode": "^3.1.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-icons": "^4.3.1",
-    "react-router-dom": "^6.3.0",
-    "styled-components": "^5.3.3",
-    "sweetalert2": "^11.4.9"
+    "axios": "0.26.1",
+    "jwt-decode": "3.1.2",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-icons": "4.3.1",
+    "react-router-dom": "6.3.0",
+    "styled-components": "5.3.3",
+    "sweetalert2": "11.4.9"
   },
   "author": "",
   "license": "MIT",
   "eslintConfig": {
     "extends": "./node_modules/standard/eslintrc.json"
   },
-  "homepage": "."
+  "homepage": "./"
 }
