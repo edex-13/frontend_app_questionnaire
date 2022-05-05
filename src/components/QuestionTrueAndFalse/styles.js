@@ -6,7 +6,7 @@ export const Container = styled.section`
   width: 100%;
   min-height: 130px;
   margin-bottom: 20px;
-  border-bottom: 4px solid #e9b356;
+  border-bottom: 4px solid #E95656;
 `
 export const Content = styled.div`
   display: grid;
@@ -45,7 +45,7 @@ export const Title = styled.h2`
   font-size: 32px;
   font-weight: bold;
   margin-bottom: 16px;
-  color: #e9b356;
+  color: #E95656;
 `
 export const Label = styled.label`
   font-size: 16px;
@@ -62,7 +62,7 @@ export const Input = styled.input`
   margin-bottom: 20px;
   &:focus {
     outline: none;
-    border: 1px solid #e9b356;
+    border: 1px solid #E95656;
     background-color: #fafafa;
   }
 `
