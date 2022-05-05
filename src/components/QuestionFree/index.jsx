@@ -6,6 +6,8 @@ import { IoMdAddCircle } from 'react-icons/io'
 
 import { useAppContext } from '@hooks/useAppContext'
 
+import { Container, Content, Input, Title, Label, Button } from './styles'
+
 export const QuestionFree = ({ id, setQuestionsHtml }) => {
   const [isSave, setIsSave] = useState(false)
   const {
@@ -51,28 +53,39 @@ export const QuestionFree = ({ id, setQuestionsHtml }) => {
   }
 
   return (
-    <div>
-      <input onChange={handleChange} name='title' type='text' placeholder='Enunciado de la pregunta' />
-      <input onChange={handleChange} name='response' type='text' placeholder='Respuesta correcta' />
+    <Container>
+      <Title>Pregunta Libre</Title>
+      <Content>
 
-      {
+        <div className='inputs'>
+          <Label>Enunciado de la pregunta:</Label>
+          <Input onChange={handleChange} name='title' type='text' placeholder='Enunciado de la pregunta' />
+          <Label>Respuesta:</Label>
+          <Input onChange={handleChange} name='response' type='text' placeholder='Respuesta correcta' />
+        </div>
+        <div className='buttons'>
+          {
         !isSave && (
           <>
-            <button onClick={
+            <Button
+              save onClick={
                 handleSaveToQuestion
               }
             >
-              <IoMdAddCircle />
-            </button>
-            <button onClick={
+              <IoMdAddCircle size='25px' />
+            </Button>
+            <Button
+              delete onClick={
               handleRemoveToQuestion
             }
-            ><MdDelete />
-            </button>
+            ><MdDelete size='25px' />
+            </Button>
           </>
         )
       }
+        </div>
+      </Content>
 
-    </div>
+    </Container>
   )
 }

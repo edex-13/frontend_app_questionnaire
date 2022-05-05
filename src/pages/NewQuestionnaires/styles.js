@@ -22,7 +22,6 @@ export const SectionButtons = styled.section`
     height: 100%;
   }
   padding-bottom: 20px;
-  border-bottom: 1px solid ${variables.GREEN};
 `
 
 export const Title = styled.h1`
