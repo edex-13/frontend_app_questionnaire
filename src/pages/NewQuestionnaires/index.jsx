@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { Container, Title, Input, Button, SectionHeader, SectionButtons, Label } from './styles'
+
 import { useNavigate } from 'react-router-dom'
 
 import { useAppContext } from '@hooks/useAppContext'
@@ -52,43 +54,55 @@ export const NewQuestionnaires = () => {
 
   return (
     <Layout>
-      <input onChange={handleChange} type='text' placeholder='nombre del cuestionario' />
+      <Container>
+        <SectionHeader>
+          <Title>Crear cuestionario</Title>
+          <Button onClick={handleAddQuestion}>
+            Guardar
+          </Button>
+        </SectionHeader>
+        <Label>Nombre del cuestionario:</Label>
+        <Input onChange={handleChange} type='text' placeholder='...' />
+        <Label>Selecciona el tipo de pregunta:</Label>
+        <SectionButtons>
+          <Button
+            multiple
+            onClick={() => {
+              const id = Math.random()
+              handleAddToQuestionsHtml(
+                <QuestionMultipleChoice key={id} id={id} />
+              )
+            }}
+          >
+            Pregunta con opción multiple
+          </Button>
+          <Button
+            onClick={() => {
+              const id = Math.random()
+              handleAddToQuestionsHtml(
+                <QuestionTrueAndFalse key={id} id={id} />
+              )
+            }}
+            truAndFalse
+          >
+            Pregunta Falso y Verdadero
+          </Button>
+          <Button
+            text
+            onClick={() => {
+              const id = Math.random()
+              handleAddToQuestionsHtml(
+                <QuestionFree key={id} id={id} setQuestionsHtml={setQuestionsHtml} />
+              )
+            }}
+          >
+            Pregunta libre
+          </Button>
+        </SectionButtons>
 
-      <button
-        onClick={() => {
-          const id = Math.random()
-          handleAddToQuestionsHtml(
-            <QuestionMultipleChoice key={id} id={id} />
-          )
-        }}
-      >
-        Pregunta con opción multiple
-      </button>
-      <button onClick={() => {
-        const id = Math.random()
-        handleAddToQuestionsHtml(
-          <QuestionTrueAndFalse key={id} id={id} />
-        )
-      }}
-      >
-        Pregunta Falso y Verdadero
-      </button>
-      <button
-        onClick={() => {
-          const id = Math.random()
-          handleAddToQuestionsHtml(
-            <QuestionFree key={id} id={id} setQuestionsHtml={setQuestionsHtml} />
-          )
-        }}
-      >
-        Pregunta libre
-      </button>
-      <button onClick={handleAddQuestion}>
+        {questionsHtml}
+      </Container>
 
-        Guardar
-      </button>
-      <hr />
-      {questionsHtml}
     </Layout>
   )
 }

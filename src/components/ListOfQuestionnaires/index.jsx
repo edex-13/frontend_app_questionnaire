@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 import { MdDelete } from 'react-icons/md'
 
 import { IoMdAddCircle } from 'react-icons/io'
@@ -16,6 +18,8 @@ import {
 } from './styles'
 
 export const ListOfQuestionnaires = () => {
+  const navigate = useNavigate()
+
   const {
     Questionnaires: { questionnaires, getQuestionnaires, deleteQuestionnaire },
     loading
@@ -48,7 +52,10 @@ export const ListOfQuestionnaires = () => {
           <h1>Lista de tus cuestionarios</h1>
           <Add>
             <span>Nuevo Cuestionario</span>
-            <Button>
+            <Button onClick={() => {
+              navigate('/new')
+            }}
+            >
               <IoMdAddCircle />
             </Button>
           </Add>
