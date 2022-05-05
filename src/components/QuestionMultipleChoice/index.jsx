@@ -6,6 +6,8 @@ import { IoMdAddCircle } from 'react-icons/io'
 
 import { useAppContext } from '@hooks/useAppContext'
 
+import { Container, Title, Button, Content, Input, Label } from './styles'
+
 export const QuestionMultipleChoice = ({ id, setQuestionsHtml }) => {
   const [isSave, setIsSave] = useState(false)
   const {
@@ -78,86 +80,100 @@ export const QuestionMultipleChoice = ({ id, setQuestionsHtml }) => {
   }
 
   return (
-    <div>
-      <input
-        onChange={handleChange}
-        id='title'
-        type='text'
-        placeholder='Enunciado de la pregunta'
-      />
-      <div>
-        <div>
-          <input
-            onChange={handleChange}
-            id='question1'
-            type='text'
-            placeholder='Enunciado de la pregunta'
-          />
-          <input
-            onChange={handleChange}
-            name='response'
-            id='response1'
-            type='checkbox'
-            placeholder='Respuesta correcta'
-          />
-        </div>
-        <div>
-          <input
-            onChange={handleChange}
-            id='question2'
-            type='text'
-            placeholder='Enunciado de la pregunta'
-          />
-          <input
-            onChange={handleChange}
-            name='response'
-            id='response2'
-            type='checkbox'
-            placeholder='Respuesta correcta'
-          />
-        </div>
-        <div>
-          <input
-            onChange={handleChange}
-            id='question3'
-            type='text'
-            placeholder='Enunciado de la pregunta'
-          />
-          <input
-            onChange={handleChange}
-            name='response'
-            id='respons3'
-            type='checkbox'
-            placeholder='Respuesta correcta'
-          />
-        </div>
-        <div>
-          <input
-            onChange={handleChange}
-            id='question4'
-            type='text'
-            placeholder='Enunciado de la pregunta'
-          />
-          <input
-            onChange={handleChange}
-            name='response'
-            id='response4'
-            type='checkbox'
-            placeholder='Respuesta correcta'
-          />
-        </div>
-      </div>
+    <Container>
+      <Title>Pregunta Opcion Multiple</Title>
+      <Content>
+        <div className='inputs'>
+          <Label className='no'>Enunciado de la pregunta:</Label>
 
-      {!isSave && (
-        <>
-          <button onClick={handleSaveToQuestion}>
-            <IoMdAddCircle />
-          </button>
-          <button onClick={handleRemoveToQuestion}>
-            <MdDelete />
-          </button>
-        </>
-      )}
-    </div>
+          <Input
+            onChange={handleChange}
+            id='title'
+            type='text'
+            placeholder='Enunciado de la pregunta'
+          />
+          <div>
+            <Label>Pregunta 1:</Label>
+            <Label>¿Es correcta?:</Label>
+            <Input
+              onChange={handleChange}
+              id='question1'
+              type='text'
+              placeholder='Enunciado de la pregunta'
+            />
+            <Input
+              onChange={handleChange}
+              name='response'
+              id='response1'
+              type='checkbox'
+              placeholder='Respuesta correcta'
+            />
+          </div>
+          <div>
+            <Label>Pregunta 2:</Label>
+            <Label>¿Es correcta?:</Label>
+            <Input
+              onChange={handleChange}
+              id='question2'
+              type='text'
+              placeholder='Enunciado de la pregunta'
+            />
+            <Input
+              onChange={handleChange}
+              name='response'
+              id='response2'
+              type='checkbox'
+              placeholder='Respuesta correcta'
+            />
+          </div>
+          <div>
+            <Label>Pregunta 3:</Label>
+            <Label>¿Es correcta?:</Label>
+            <Input
+              onChange={handleChange}
+              id='question3'
+              type='text'
+              placeholder='Enunciado de la pregunta'
+            />
+            <Input
+              onChange={handleChange}
+              name='response'
+              id='respons3'
+              type='checkbox'
+              placeholder='Respuesta correcta'
+            />
+          </div>
+          <div>
+            <Label>Pregunta 4:</Label>
+            <Label>¿Es correcta?</Label>
+            <Input
+              onChange={handleChange}
+              id='question4'
+              type='text'
+              placeholder='Enunciado de la pregunta'
+            />
+            <Input
+              onChange={handleChange}
+              name='response'
+              id='response4'
+              type='checkbox'
+              placeholder='Respuesta correcta'
+            />
+          </div>
+        </div>
+        <div className='buttons'>
+          {!isSave && (
+            <>
+              <Button save onClick={handleSaveToQuestion}>
+                <IoMdAddCircle size='25px' />
+              </Button>
+              <Button delete onClick={handleRemoveToQuestion}>
+                <MdDelete size='25px' />
+              </Button>
+            </>
+          )}
+        </div>
+      </Content>
+    </Container>
   )
 }
