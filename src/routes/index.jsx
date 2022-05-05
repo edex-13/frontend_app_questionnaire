@@ -1,9 +1,5 @@
 import React from 'react'
-import {
-  BrowserRouter,
-  Routes,
-  Route
-} from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import { AppContext } from '@context/AppContext'
 
@@ -11,6 +7,7 @@ import { Home } from '@pages/Home/'
 import { Login } from '@pages/Login/'
 import { Register } from '@pages/Register/'
 import { Logout } from '@pages/Logout/'
+import { NewQuestionnaires } from '@pages/NewQuestionnaires/'
 import { GlobalStyle } from '@styles/GlobalStyle'
 
 export const App = () => {
@@ -23,11 +20,11 @@ export const App = () => {
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
+            <Route path='/new' element={<NewQuestionnaires />} />
             <Route path='/logout' element={<Logout />} />
           </Routes>
         </BrowserRouter>
       </AppContext>
-
     </>
   )
 }

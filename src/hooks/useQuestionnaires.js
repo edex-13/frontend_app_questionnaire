@@ -3,6 +3,7 @@ import axios from 'axios'
 
 export const useQuestionnaires = (setLoading) => {
   const [questionnaires, setQuestionnaires] = useState([])
+  const [newQuestions, setNewQuestions] = useState([])
 
   const getQuestionnaires = async () => {
     setLoading(true)
@@ -37,10 +38,34 @@ export const useQuestionnaires = (setLoading) => {
     setLoading(false)
     getQuestionnaires()
   }
+  const addQuestions = (question) => {
+    setNewQuestions([...newQuestions, question])
+  }
+  const createQuestionnaire = async (questionnaire) => {
+    setLoading(true)
+    try {
+      await axios.post('https://intense-caverns-71243.herokuapp.com/api/v1/questionnaires', questionnaire, {
+        headers: {
+          Authorization: `Bearer ${window.localStorage.getItem('token')}`
+        }
+      })
+    } catch (err) {
+      if (err.response.status === 401) {
+        window.localStorage.removeItem('token')
+        window.location.reload()
+      }
+      throw err
+    }
+    setLoading(false)
+  }
+  const getQuestions = () => newQuestions
 
   return {
     questionnaires,
+    getQuestions,
+    createQuestionnaire,
     getQuestionnaires,
-    deleteQuestionnaire
+    deleteQuestionnaire,
+    addQuestions
   }
 }
