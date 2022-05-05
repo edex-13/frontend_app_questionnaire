@@ -5,8 +5,8 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle[contenthash].js'
-    // publicPath: 'https://edex-13.github.io/rickAndMorty/'
+    filename: 'bundle[contenthash].js',
+    publicPath: 'https://edex-13.github.io/frontend_app_questionnaire/'
   },
   mode: 'development',
   resolve: {
