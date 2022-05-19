@@ -8,7 +8,6 @@ export const Login = () => {
     <Layout>
       <LoginContainer>
         <Title>Iniciar sesión</Title>
-
         <FormLogin />
       </LoginContainer>
     </Layout>

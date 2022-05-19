@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { alertsWarning } from '@utils/alerts'
 
 import { MdDelete } from 'react-icons/md'
@@ -44,6 +44,10 @@ export const QuestionMultipleChoice = ({ id, setQuestionsHtml }) => {
       alertsWarning('Por favor, selecciona la respuesta correcta.')
       return
     }
+    if (questions.response1 + questions.response2 + questions.response3 + questions.response4 !== 1) {
+      alertsWarning('Por favor , selecciona solo UNA respuesta')
+      return
+    }
 
     setIsSave(true)
 
@@ -74,8 +78,9 @@ export const QuestionMultipleChoice = ({ id, setQuestionsHtml }) => {
   }
   const handleRemoveToQuestion = () => {
     setQuestionsHtml((html) => {
-      console.log(html)
-      return html.filter((item) => item.key !== id)
+      return html.filter((item) => {
+        return item.key != id
+      })
     })
   }
 
@@ -137,8 +142,8 @@ export const QuestionMultipleChoice = ({ id, setQuestionsHtml }) => {
             />
             <Input
               onChange={handleChange}
-              name='response'
-              id='respons3'
+              name='response3'
+              id='response3'
               type='checkbox'
               placeholder='Respuesta correcta'
             />

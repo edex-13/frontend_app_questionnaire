@@ -48,7 +48,7 @@ export const QuestionFree = ({ id, setQuestionsHtml }) => {
   const handleRemoveToQuestion = () => {
     setQuestionsHtml((html) => {
       console.log(html)
-      return html.filter((item) => item.key !== id)
+      return html.filter((item) => item.key != id)
     })
   }
 
