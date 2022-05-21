@@ -4,6 +4,12 @@ import axios from 'axios'
 export const useQuestionnaires = (setLoading) => {
   const [questionnaires, setQuestionnaires] = useState([])
   const [newQuestions, setNewQuestions] = useState([])
+  const [schema, setSchema] = useState([])
+  const [response, setResponse] = useState({
+    nameUser: '',
+    idQuestionnaire: '',
+    answers: []
+  })
 
   const getQuestionnaires = async () => {
     setLoading(true)
@@ -30,13 +36,22 @@ export const useQuestionnaires = (setLoading) => {
   }
   const deleteQuestionnaire = async (id) => {
     setLoading(true)
-    await axios.delete(`https://intense-caverns-71243.herokuapp.com/api/v1/questionnaires/${id}`, {
-      headers: {
-        Authorization: `Bearer ${window.localStorage.getItem('token')}`
+    try {
+      await axios.delete(`https://intense-caverns-71243.herokuapp.com/api/v1/questionnaires/${id}`, {
+        headers: {
+          Authorization: `Bearer ${window.localStorage.getItem('token')}`
+        }
+      })
+      getQuestionnaires()
+    } catch (err) {
+      if (err.response.status === 401) {
+        window.localStorage.removeItem('token')
+        window.location.reload()
       }
-    })
+      throw err
+    }
+
     setLoading(false)
-    getQuestionnaires()
   }
   const addQuestions = (question) => {
     setNewQuestions([...newQuestions, question])
@@ -60,12 +75,41 @@ export const useQuestionnaires = (setLoading) => {
   }
   const getQuestions = () => newQuestions
 
+  const getQuestionnaireToAnswer = async ({ email, code }) => {
+    setLoading(true)
+
+    const { data } = await axios.get(`https://intense-caverns-71243.herokuapp.com/api/v1/questionnaires/reply/${code}`)
+    setSchema(data.message)
+    setResponse({
+
+      nameUser: email,
+      idQuestionnaire: data.message.id
+    })
+    setLoading(false)
+    return data.message
+  }
+  const responseQuestionnaire = async (response) => {
+    setLoading(true)
+    try {
+      console.log(response)
+      const a = await axios.post('https://intense-caverns-71243.herokuapp.com/api/v1/questionnaires/reply', response)
+      return a.data
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   return {
     questionnaires,
+    responseQuestionnaire,
     getQuestions,
+    schema,
+    response,
+    setResponse,
     createQuestionnaire,
     getQuestionnaires,
     deleteQuestionnaire,
-    addQuestions
+    addQuestions,
+    getQuestionnaireToAnswer
   }
 }
