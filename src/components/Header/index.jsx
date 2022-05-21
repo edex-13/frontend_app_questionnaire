@@ -27,10 +27,6 @@ export const Header = () => {
           path: '/'
         },
         {
-          name: 'Perfil',
-          path: '/profile'
-        },
-        {
           name: 'Cerrar Sesión',
           path: '/logout'
         }
